@@ -31,7 +31,7 @@ public class TranslationLoader {
 
         for (final Locale locale : readLocalesFromJar(plugin, folder, bundleName)) {
             try {
-                final ResourceBundle bundle = ResourceBundle.getBundle(folder + "/" + bundleName, locale, plugin.getClass().getClassLoader());
+                final ResourceBundle bundle = ResourceBundle.getBundle(folder + "." + bundleName, locale, plugin.getClass().getClassLoader());
 
                 store.registerAll(locale, bundle, false);
             } catch (MissingResourceException ignored) {}
