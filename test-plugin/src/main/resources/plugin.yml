@@ -1,0 +1,8 @@
+name: translation-loader
+version: '${version}'
+
+main: net.earthmc.translation.test_plugin.TestPlugin
+api-version: '1.21.11'
+load: STARTUP
+
+authors: [ Warriorrr ]

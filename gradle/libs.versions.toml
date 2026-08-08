@@ -1,0 +1,17 @@
+[versions]
+paper-api = "1.21.11-R0.1-SNAPSHOT"
+minecraft = "1.21.11"
+
+shadow = "9.6.1"
+run-task = "3.0.2"
+
+conventions = "1.1.1"
+
+[libraries]
+paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paper-api" }
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
+run-paper = { id = "xyz.jpenilla.run-paper", version.ref = "run-task" }
+conventions-java = { id = "net.earthmc.conventions.java", version.ref = "conventions" }
+conventions-publishing = { id = "net.earthmc.conventions.publishing", version.ref = "conventions" }
