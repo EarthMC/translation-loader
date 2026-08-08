@@ -17,6 +17,6 @@ public final class TestPlugin extends JavaPlugin implements Listener {
 
     @EventHandler
     public void on(PlayerJumpEvent event) {
-        event.getPlayer().sendMessage(Component.translatable("hi"));
+        event.getPlayer().sendMessage(Component.translatable("bad"));
     }
 }
