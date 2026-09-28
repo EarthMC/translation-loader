@@ -13,24 +13,30 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public final class TestPlugin extends JavaPlugin implements Listener {
-    private TranslationLoader translationLoader;
+    private final TranslationLoader translationLoader = TranslationLoader.setup(this, "translations", "messages") // Set up the loader to look for files in the translations folder with a base name of messages.
+        // useOverrideSystem enables functionality where translation files will be copied to the /plugins/name/lang/reference folder for viewing,
+        // and files from the /plugins/name/lang/override folder will be loaded on top of the base translations in the jar.
+        .useOverrideSystem();
 
     @Override
     public void onEnable() {
-        getServer().getPluginManager().registerEvents(this, this);
-        this.translationLoader = TranslationLoader.setup(this, "translations", "messages").useOverrideSystem().load();
+        // load() loads or reloads all translations into the global translator, requires the plugin to be enabled.
+        this.translationLoader.load();
 
         getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, event -> {
             event.registrar().register("reloadlang", (source, args) -> {
+                // Example of reloading, uses the same method.
                 this.translationLoader.load();
                 source.getSender().sendPlainMessage("reloaded");
             });
 
             event.registrar().register("debuglang", (source, args) -> {
                 source.getSender().sendPlainMessage(StreamSupport.stream(GlobalTranslator.translator().sources().spliterator(), false)
-                    .map(translator -> translator.name().asMinimalString()).collect(Collectors.joining(", ")));
+                    .map(translator -> translator.name().asString()).collect(Collectors.joining(", ")));
             });
         });
+
+        getServer().getPluginManager().registerEvents(this, this);
     }
 
     @EventHandler

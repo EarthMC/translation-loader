@@ -35,6 +35,9 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * A library for loading embedded translation files for serverside translations.
+ */
 public class TranslationLoader {
     private final JavaPlugin plugin;
     private final String folder;
@@ -52,6 +55,14 @@ public class TranslationLoader {
         this.bundleName = bundleName;
     }
 
+    /**
+     * Creates a new {@link TranslationLoader} instance with the given options.
+     *
+     * @param plugin Your plugin's instance.
+     * @param folder The folder within the resources folder that contains the translation files.
+     * @param bundleName The base name of the resource bundle for the translation.
+     * @return A new {@link TranslationLoader} instance.
+     */
     @Contract(pure = true)
     public static TranslationLoader setup(final JavaPlugin plugin, final String folder, final String bundleName) {
         return new TranslationLoader(plugin, folder, bundleName);
